@@ -12,25 +12,38 @@ APPROVED_BREEDS = [
 ]
 
 class Dog:
-    def __init__(self):
-        #self._name = name
-        #self._breed = breed
-        self.age = 0
+    def __init__(self,name='',breed='none'):
+            self.name = name
+            self.breed = breed
+    
+    #@property
+    #def name(self):
+    #    return self._name
+    
+    #@name.setter
+    #def name(self,value):
+    #    if (type(value) == str) and (len(value)>0):
+    #        #print("Valid string found")
+    #        self._name = value
+    #    else:
+    #        print("Name must be string between 1 and 25 characters")
+
 
     def get_name(self):
-        print("retrieving name")
-        return self._name
-
-    def set_name(self,name):
-        if (type(name) == str) and (len(name)>0):
-            print("Valid string found")
-            self._name = name
+         return self._name
+    
+    def set_name(self, value):
+        if (type(value) == str) and (len(value)>0):
+            #print("Valid string found")
+            if len(value)>25:
+                 print("Name must be string between 1 and 25 characters.")
+            self._name = value
         else:
-            print("Name must be string between 1 and 25 characters")
+            print("Name must be string between 1 and 25 characters.")
 
+    
     def get_breed(self):
-        print("Checking Breed")
-        return self._breed
+         return self._breed
 
     def set_breed(self,breed):
         if breed in APPROVED_BREEDS:
@@ -38,13 +51,11 @@ class Dog:
         else:
             print("Invalid Breed!")    
 
-    
-    
-    name = property(get_name,set_name,)
-    breed = property(get_breed,set_breed,)        
+    name = property(fget=get_name,fset=set_name)
+    breed = property(fget=get_breed,fset=set_breed)        
 
 #Bo = Dog(1234)
 
 #print(Bo.name)
 
-#ipdb.set_trace()
+ipdb.set_trace()
